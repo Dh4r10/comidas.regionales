@@ -14,6 +14,9 @@ public class Pedido {
 
     // CAMPOS
 
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,9 +32,11 @@ public class Pedido {
     @OneToMany (mappedBy = "pedido", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<DetallePedido> detallePedido;
-    @JsonIgnore
-    @OneToMany(mappedBy = "pedido",fetch = FetchType.LAZY)
-    private List<DetalleVenta> detalleVentas;
+
+
+    @OneToOne
+    private Venta venta;
+
 
     // CONSTRUCTOR
 
@@ -77,6 +82,22 @@ public class Pedido {
 
     public void setDetallePedido(List<DetallePedido> detallePedido) {
         this.detallePedido = detallePedido;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     @Override

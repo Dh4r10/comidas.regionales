@@ -4,8 +4,10 @@ package proyecto.grupal.lp.comidas.regionales.Services.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Entities.Cliente;
+import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Entities.Venta;
 import proyecto.grupal.lp.comidas.regionales.Repositories.ClienteRepository;
+import proyecto.grupal.lp.comidas.regionales.Repositories.PedidoRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.VentaRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.IVentaService;
 
@@ -19,12 +21,17 @@ public class VentaServiceImpl implements IVentaService {
     private ClienteRepository clienteRepository;
     @Autowired
     private VentaRepository ventaRepository;
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
     @Override
-    public Venta registrarVenta(Venta venta, Long clienteID) {
+    public Venta registrarVenta(Venta venta, Long clienteID,Long pedidoID) {
 
         Cliente cliente= clienteRepository.findById(clienteID).orElseThrow();
+        Pedido pedido=pedidoRepository.findById(pedidoID).orElseThrow();
         Venta ventaSv =new Venta();
         ventaSv.setCliente(cliente);
+        ventaSv.setPedido(pedido);
         ventaSv.setDescripcion(venta.getDescripcion());
         ventaSv.setCodigoRecibo(venta.getCodigoRecibo());
         ventaSv.setEstado(true);

@@ -9,7 +9,7 @@ import java.util.List;
 public interface IVentaService {
 
 
-    Venta registrarVenta(Venta venta, Long clienteID);
+    Venta registrarVenta(Venta venta, Long clienteID,Long pedidoID);
     List<Venta> verTodasVentas();
     List<Venta> verVentasPorCliente(Long clienteID);
 

@@ -34,8 +34,9 @@ public class Venta {
     @JoinColumn(name = "cliente_id",referencedColumnName = "id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "venta",fetch =FetchType.LAZY )
-    private List<DetalleVenta> detalleVentas=new ArrayList<>();
+    @OneToOne
+    private Pedido pedido;
+
 
     public Cliente getCliente() {
         return cliente;
@@ -45,12 +46,14 @@ public class Venta {
         this.cliente = cliente;
     }
 
-    public List<DetalleVenta> getDetalleVentas() {
-        return detalleVentas;
+
+
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-        this.detalleVentas = detalleVentas;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public Long getId() {

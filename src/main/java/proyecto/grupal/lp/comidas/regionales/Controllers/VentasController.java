@@ -14,9 +14,9 @@ public class VentasController {
     @Autowired
     private IVentaService ventaService;
 
-    @PostMapping("/create/client/{id}")
-    public ResponseEntity<?> registrarVenta(@RequestBody Venta venta, @PathVariable Long id){
-        return new ResponseEntity<>(ventaService.registrarVenta(venta,id), HttpStatus.CREATED);
+    @PostMapping("/create/client/{id}/pedido/{pedido_id}")
+    public ResponseEntity<?> registrarVenta(@RequestBody Venta venta, @PathVariable Long id,@PathVariable("pedido_id") Long pedidoID){
+        return new ResponseEntity<>(ventaService.registrarVenta(venta,id,pedidoID), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
