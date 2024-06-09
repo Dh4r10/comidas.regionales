@@ -23,12 +23,13 @@ public class DetallePedidoService implements IDetallePedidoService {
         return detallePedidoRepository.findById(id);
     }
 
-    public void postDetallePedido(DetallePedido request) {
+    public DetallePedido postDetallePedido(DetallePedido request) {
         if (request.getEstado() == null) {
             request.setEstado(true);
         }
 
         detallePedidoRepository.save(request);
+        return request;
     }
 
     public DetallePedido putDetallePedido(DetallePedido request, Long id) {

@@ -9,7 +9,7 @@ public interface IDetallePedidoService {
 
     List<DetallePedido> getAllDetallePedidos();
     Optional<DetallePedido> getDetallePedidoById(Long id);
-    void postDetallePedido(DetallePedido request);
+    DetallePedido postDetallePedido(DetallePedido request);
     DetallePedido putDetallePedido(DetallePedido request, Long id);
     void deleteDetallePedido(Long id);
 

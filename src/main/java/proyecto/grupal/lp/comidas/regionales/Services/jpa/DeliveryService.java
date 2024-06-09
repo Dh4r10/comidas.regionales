@@ -3,8 +3,10 @@ package proyecto.grupal.lp.comidas.regionales.Services.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Entities.Delivery;
+import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Repositories.DeliveryRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.IDeliveryService;
+import proyecto.grupal.lp.comidas.regionales.Services.IPedidoService;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,9 @@ public class DeliveryService implements IDeliveryService {
     @Autowired
     private DeliveryRepository deliveryRepository;
 
+    @Autowired
+    private IPedidoService pedidoService;
+
     public List<Delivery> getAllDeliveries() {
         return deliveryRepository.findAll();
     }
@@ -24,6 +29,7 @@ public class DeliveryService implements IDeliveryService {
     }
 
     public void postDelivery(Delivery request) {
+
         if (request.getEstado() == null) {
             request.setEstado(true);
         }
