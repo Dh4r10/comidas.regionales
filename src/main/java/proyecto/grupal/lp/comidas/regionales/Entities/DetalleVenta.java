@@ -16,6 +16,9 @@ public class DetalleVenta {
     @ManyToOne
     @JoinColumn(name = "venta_id",referencedColumnName = "id")
     private Venta venta;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id",referencedColumnName = "id")
+    private Pedido pedido;
 
     public Long getId() {
         return id;
@@ -27,6 +30,14 @@ public class DetalleVenta {
 
     public Venta getVenta() {
         return venta;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public void setVenta(Venta venta) {

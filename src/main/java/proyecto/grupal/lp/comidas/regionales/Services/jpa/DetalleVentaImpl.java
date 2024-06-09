@@ -6,12 +6,12 @@ import proyecto.grupal.lp.comidas.regionales.Entities.DetalleVenta;
 import proyecto.grupal.lp.comidas.regionales.Entities.Venta;
 import proyecto.grupal.lp.comidas.regionales.Repositories.DetalleVentaRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.VentaRepository;
-import proyecto.grupal.lp.comidas.regionales.Services.DetalleVentaService;
+import proyecto.grupal.lp.comidas.regionales.Services.IDetalleVentaService;
 
 import java.util.List;
 
 @Service
-public class DetalleVentaImpl implements DetalleVentaService {
+public class DetalleVentaImpl implements IDetalleVentaService {
 
     @Autowired
     private VentaRepository ventaRepository;

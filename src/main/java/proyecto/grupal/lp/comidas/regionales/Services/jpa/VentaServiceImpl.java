@@ -7,13 +7,13 @@ import proyecto.grupal.lp.comidas.regionales.Entities.Cliente;
 import proyecto.grupal.lp.comidas.regionales.Entities.Venta;
 import proyecto.grupal.lp.comidas.regionales.Repositories.ClienteRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.VentaRepository;
-import proyecto.grupal.lp.comidas.regionales.Services.VentaService;
+import proyecto.grupal.lp.comidas.regionales.Services.IVentaService;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class VentaServiceImpl implements VentaService {
+public class VentaServiceImpl implements IVentaService {
 
     @Autowired
     private ClienteRepository clienteRepository;

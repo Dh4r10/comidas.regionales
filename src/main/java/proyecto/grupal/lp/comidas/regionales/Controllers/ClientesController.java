@@ -6,14 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyecto.grupal.lp.comidas.regionales.Entities.Cliente;
-import proyecto.grupal.lp.comidas.regionales.Services.ClienteService;
+import proyecto.grupal.lp.comidas.regionales.Services.IClienteService;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
 public class ClientesController {
 
     @Autowired
-    private ClienteService clienteService;
+    private IClienteService clienteService;
     @PostMapping("/create")
     public ResponseEntity<?>  registrarCliente(@RequestBody Cliente cliente){
 

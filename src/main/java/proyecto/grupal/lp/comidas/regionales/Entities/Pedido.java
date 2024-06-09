@@ -29,6 +29,9 @@ public class Pedido {
     @OneToMany (mappedBy = "pedido", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<DetallePedido> detallePedido;
+    @JsonIgnore
+    @OneToMany(mappedBy = "pedido",fetch = FetchType.LAZY)
+    private List<DetalleVenta> detalleVentas;
 
     // CONSTRUCTOR
 

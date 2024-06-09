@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Entities.Cliente;
 import proyecto.grupal.lp.comidas.regionales.Repositories.ClienteRepository;
-import proyecto.grupal.lp.comidas.regionales.Services.ClienteService;
+import proyecto.grupal.lp.comidas.regionales.Services.IClienteService;
 
 import java.util.List;
 
 @Service
-public class ClienteServiceImpl implements ClienteService {
+public class ClienteServiceImpl implements IClienteService {
 
 
     @Autowired
