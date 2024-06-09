@@ -6,13 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyecto.grupal.lp.comidas.regionales.Entities.Venta;
-import proyecto.grupal.lp.comidas.regionales.Services.VentaService;
+import proyecto.grupal.lp.comidas.regionales.Services.IVentaService;
 
 @RestController
 @RequestMapping("/api/v1/ventas")
 public class VentasController {
     @Autowired
-    private VentaService ventaService;
+    private IVentaService ventaService;
 
     @PostMapping("/create/client/{id}")
     public ResponseEntity<?> registrarVenta(@RequestBody Venta venta, @PathVariable Long id){

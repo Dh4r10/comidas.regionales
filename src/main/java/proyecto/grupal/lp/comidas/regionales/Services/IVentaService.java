@@ -6,7 +6,7 @@ import proyecto.grupal.lp.comidas.regionales.Entities.Venta;
 
 import java.util.List;
 
-public interface VentaService {
+public interface IVentaService {
 
 
     Venta registrarVenta(Venta venta, Long clienteID);

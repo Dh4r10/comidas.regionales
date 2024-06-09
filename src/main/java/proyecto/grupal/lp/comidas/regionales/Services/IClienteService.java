@@ -6,7 +6,7 @@ import proyecto.grupal.lp.comidas.regionales.Entities.Cliente;
 
 import java.util.List;
 
-public interface ClienteService {
+public interface IClienteService {
 
 
     Cliente registrarCliente(Cliente cliente);

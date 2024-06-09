@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import proyecto.grupal.lp.comidas.regionales.Services.DetalleVentaService;
+import proyecto.grupal.lp.comidas.regionales.Services.IDetalleVentaService;
 
 
 @RestController
@@ -16,7 +16,7 @@ public class DetallesVentasController {
 
 
     @Autowired
-    private DetalleVentaService detalleVentaService;
+    private IDetalleVentaService detalleVentaService;
 
     @GetMapping("/venta/{id}")
     public ResponseEntity<?> verDetallesVentas(@PathVariable Long id){

@@ -4,7 +4,7 @@ import proyecto.grupal.lp.comidas.regionales.Entities.DetalleVenta;
 
 import java.util.List;
 
-public interface DetalleVentaService {
+public interface IDetalleVentaService {
 
 
     List<DetalleVenta> verDetalleVentas(Long ventaID);
