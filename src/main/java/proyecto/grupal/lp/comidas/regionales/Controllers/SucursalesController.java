@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/sucursales")
+@RequestMapping("api/v1/sucursales")
 public class SucursalesController {
 
     @Autowired private ISucursalServices sucursalServices;
