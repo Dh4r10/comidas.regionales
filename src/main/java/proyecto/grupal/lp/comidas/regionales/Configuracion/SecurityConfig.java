@@ -30,9 +30,15 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws  Exception{
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
         		.authorizeHttpRequests(ar -> 
-        		ar.requestMatchers("/api/v1/auth/**")
+        		ar.requestMatchers("/api/v1/auth/**","/v3/api-docs/**",
+								"/configuration/ui",
+								"/swagger-resources/**",
+								"/configuration/**",
+								"/swagger-ui.html",
+								"/swagger-ui/**",
+								"/webjars/**")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST,"/api/v1/auth/usuarios/**")
+						.requestMatchers(HttpMethod.POST,"/api/v1/usuarios/tipo-usuario/**")
 						.permitAll()
 						.anyRequest().authenticated()
         		).exceptionHandling((exception)->exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))

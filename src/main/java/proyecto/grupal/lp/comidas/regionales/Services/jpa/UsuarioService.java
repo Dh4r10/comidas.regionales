@@ -7,7 +7,9 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import proyecto.grupal.lp.comidas.regionales.Entities.TipoUsuario;
 import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
+import proyecto.grupal.lp.comidas.regionales.Repositories.TipoUsuarioRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.UsuarioRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.IUsuarioService;
 
@@ -18,6 +20,9 @@ public class UsuarioService implements IUsuarioService{
 	  @Autowired
 	  private PasswordEncoder passwordEncoder;
 
+	  @Autowired
+	  private TipoUsuarioRepository tipoUsuarioRepository;
+
 	    public List<Usuario> getAllUsuario() {
 	        return usuarioRepository.findAll();
 	    }
@@ -26,7 +31,12 @@ public class UsuarioService implements IUsuarioService{
 	        return usuarioRepository.findById(id);
 	    }
 
-	    public void postUsuario(Usuario request) {
+	    public Usuario postUsuario(Usuario request, Long idTipoUsuario) {
+
+			TipoUsuario tipoUsuario=tipoUsuarioRepository.findById(idTipoUsuario)
+					.orElseThrow(()->new RuntimeException("Tipo usuario not found"));
+
+			request.setTipoUsuario(tipoUsuario);
 	        if (request.getEstado() == null){
 	            request.setEstado(true);
 	        }
@@ -36,11 +46,11 @@ public class UsuarioService implements IUsuarioService{
 			}
 			// CHANGE: Encriptando Contraseña
 			request.setPassword(passwordEncoder.encode(request.getPassword()));
-	        usuarioRepository.save(request);
+	       return  usuarioRepository.save(request);
 	    }
 
 	    public Usuario putUsuario(Usuario request, Long id) {
-	    	Usuario usuario= usuarioRepository.findById(id).get();
+	    	Usuario usuario= usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario not found"));
 
 	    	usuario.setTipoUsuario(request.getTipoUsuario());
 	    	

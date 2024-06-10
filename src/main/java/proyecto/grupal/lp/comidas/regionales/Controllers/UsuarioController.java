@@ -1,4 +1,6 @@
 package proyecto.grupal.lp.comidas.regionales.Controllers;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
 import proyecto.grupal.lp.comidas.regionales.Services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,10 @@ public class UsuarioController {
         return usuarioService.getUsuarioById(id);
     }
 
-    @PostMapping()
-    public Usuario postUsuario(@RequestBody Usuario usuario) {
-        usuarioService.postUsuario(usuario);
-        return usuario;
+    @PostMapping("/tipo-usuario/{id}")
+    public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario, @PathVariable Long id) {
+
+        return new ResponseEntity<>(usuarioService.postUsuario(usuario,id), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

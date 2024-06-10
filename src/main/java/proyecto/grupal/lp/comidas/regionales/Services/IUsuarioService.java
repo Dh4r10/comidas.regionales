@@ -7,7 +7,7 @@ import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
 public interface IUsuarioService {
     List<Usuario> getAllUsuario();
     Optional<Usuario> getUsuarioById(Long id);
-    void postUsuario(Usuario request);
+    Usuario postUsuario(Usuario request, Long tipoUsuarioID);
     Usuario putUsuario(Usuario request, Long id);
     void deleteUsuario(Long id);
 
