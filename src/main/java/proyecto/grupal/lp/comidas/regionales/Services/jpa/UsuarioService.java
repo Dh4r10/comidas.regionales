@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
 import proyecto.grupal.lp.comidas.regionales.Repositories.UsuarioRepository;
@@ -14,6 +15,8 @@ import proyecto.grupal.lp.comidas.regionales.Services.IUsuarioService;
 public class UsuarioService implements IUsuarioService{
 	  @Autowired
 	    private UsuarioRepository usuarioRepository;
+	  @Autowired
+	  private PasswordEncoder passwordEncoder;
 
 	    public List<Usuario> getAllUsuario() {
 	        return usuarioRepository.findAll();
@@ -30,8 +33,9 @@ public class UsuarioService implements IUsuarioService{
 	        
 	        if (request.getIdPublico() == null) {
 	        	request.setIdPublico(UUID.randomUUID());
-	        }
-
+			}
+			// CHANGE: Encriptando Contraseña
+			request.setPassword(passwordEncoder.encode(request.getPassword()));
 	        usuarioRepository.save(request);
 	    }
 
@@ -54,7 +58,7 @@ public class UsuarioService implements IUsuarioService{
 	    	usuario.setDireccion(request.getDireccion());
 	    	usuario.setCorreo(request.getCorreo());
 	    	usuario.setUsername(request.getUsername());
-	    	usuario.setPassword(request.getPassword());
+	    	usuario.setPassword(passwordEncoder.encode(request.getPassword()));
 	    	usuario.setUltimoIngresoFecha(request.getUltimoIngresoFecha());
 	    	usuario.setUltimoIngresoHora(request.getUltimoIngresoHora());
 	    	usuario.setOnline(request.getOnline());

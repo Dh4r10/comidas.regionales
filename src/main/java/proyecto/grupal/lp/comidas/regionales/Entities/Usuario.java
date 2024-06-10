@@ -1,6 +1,7 @@
 package proyecto.grupal.lp.comidas.regionales.Entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +15,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "usuario")
 @SQLDelete(sql = "UPDATE usuario SET estado = false WHERE id = ?")
-
 public class Usuario implements UserDetails{
 
 	@Override
@@ -47,7 +47,7 @@ public class Usuario implements UserDetails{
     private Long id;
 	
 	@ManyToOne
-	@JoinColumn (name="tipo_usuario_id", referencedColumnName = "id", foreignKey =@ForeignKey(name = "FK_TU_U"), nullable=false)
+	@JoinColumn (name="tipo_usuario_id", referencedColumnName = "id", foreignKey =@ForeignKey(name = "FK_TU_U"), nullable=true)
     private TipoUsuario tipoUsuario;
     
 	

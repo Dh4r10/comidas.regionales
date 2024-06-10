@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/usuario")
+@RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class UsuarioController {
         return usuarioService.getUsuarioById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public Usuario postUsuario(@RequestBody Usuario usuario) {
         usuarioService.postUsuario(usuario);
         return usuario;
