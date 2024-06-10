@@ -14,9 +14,6 @@ public class Pedido {
 
     // CAMPOS
 
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,10 +30,12 @@ public class Pedido {
     @JsonIgnore
     private List<DetallePedido> detallePedido;
 
+    @OneToMany (mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<DetalleMesa> detalleMesa;
 
     @OneToOne
     private Venta venta;
-
 
     // CONSTRUCTOR
 
@@ -100,6 +99,14 @@ public class Pedido {
         this.venta = venta;
     }
 
+    public List<DetalleMesa> getDetalleMesa() {
+        return detalleMesa;
+    }
+
+    public void setDetalleMesa(List<DetalleMesa> detalleMesa) {
+        this.detalleMesa = detalleMesa;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -107,7 +114,10 @@ public class Pedido {
                 ", fecha=" + fecha +
                 ", tipoPedido='" + tipoPedido + '\'' +
                 ", estado=" + estado +
+                ", delivery=" + delivery +
                 ", detallePedido=" + detallePedido +
+                ", detalleMesa=" + detalleMesa +
+                ", venta=" + venta +
                 '}';
     }
 }

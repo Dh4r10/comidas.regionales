@@ -34,7 +34,7 @@ public class Mesa {
 
     @OneToMany (mappedBy = "mesa", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<DetallePedidoMesa> detallePedidoMesa;
+    private List<DetalleMesa> detalleMesa;
 
     // CONSTRUCTOR
 
@@ -115,12 +115,12 @@ public class Mesa {
         this.detalleReserva = detalleReserva;
     }
 
-    public List<DetallePedidoMesa> getDetallePedidoMesa() {
-        return detallePedidoMesa;
+    public List<DetalleMesa> getDetalleMesa() {
+        return detalleMesa;
     }
 
-    public void setDetallePedidoMesa(List<DetallePedidoMesa> detallePedidoMesa) {
-        this.detallePedidoMesa = detallePedidoMesa;
+    public void setDetalleMesa(List<DetalleMesa> detalleMesa) {
+        this.detalleMesa = detalleMesa;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class Mesa {
                 ", ocupado=" + ocupado +
                 ", estado=" + estado +
                 ", detalleReserva=" + detalleReserva +
-                ", detallePedidoMesa=" + detallePedidoMesa +
+                ", detallePedidoMesa=" + detalleMesa +
                 '}';
     }
 }

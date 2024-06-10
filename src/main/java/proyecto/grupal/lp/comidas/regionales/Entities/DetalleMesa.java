@@ -6,7 +6,7 @@ import org.hibernate.annotations.SQLDelete;
 @Entity
 @Table(name = "detalle_pedido_mesa")
 @SQLDelete(sql = "UPDATE detalle_pedido_mesa SET estado = false WHERE id = ?")
-public class DetallePedidoMesa {
+public class DetalleMesa {
 
     // CAMPOS
 
@@ -14,9 +14,9 @@ public class DetallePedidoMesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-	@JoinColumn(name="detalle_pedido_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_DEPEME_DEPE"), nullable = false)
-    private DetallePedido detallePedido;
+    @ManyToOne
+	@JoinColumn(name="pedido_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_DEPEME_DEPE"), nullable = false)
+    private Pedido pedido;
 
     @ManyToOne
 	@JoinColumn (name="mesa_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_DEPEME_ME"), nullable = false)
@@ -26,7 +26,7 @@ public class DetallePedidoMesa {
 
     // CONSTRUCTOR
 
-    public DetallePedidoMesa() {}
+    public DetalleMesa() {}
 
     // GETTERS Y SETTERS
 
@@ -38,12 +38,12 @@ public class DetallePedidoMesa {
         this.id = id;
     }
 
-    public DetallePedido getDetallePedido() {
-        return detallePedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setDetallePedido(DetallePedido detallePedido) {
-        this.detallePedido = detallePedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public Mesa getMesa() {
@@ -66,7 +66,7 @@ public class DetallePedidoMesa {
     public String toString() {
         return "DetallePedidoMesa{" +
                 "id=" + id +
-                ", detallePedido=" + detallePedido +
+                ", pedido=" + pedido +
                 ", mesa=" + mesa +
                 ", estado=" + estado +
                 '}';

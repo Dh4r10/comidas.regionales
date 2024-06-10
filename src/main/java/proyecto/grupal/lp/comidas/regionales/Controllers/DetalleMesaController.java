@@ -2,37 +2,37 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import proyecto.grupal.lp.comidas.regionales.Entities.DetallePedidoMesa;
-import proyecto.grupal.lp.comidas.regionales.Services.IDetallePedidoMesaService;
+import proyecto.grupal.lp.comidas.regionales.Entities.DetalleMesa;
+import proyecto.grupal.lp.comidas.regionales.Services.IDetalleMesaService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/detalle-pedido-mesa")
-public class DetallePedidoMesaController {
+public class DetalleMesaController {
 
     @Autowired
-    private IDetallePedidoMesaService detallePedidoMesaService;
+    private IDetalleMesaService detallePedidoMesaService;
 
      @GetMapping
-    public List<DetallePedidoMesa> getAllDetallePedidos() {
+    public List<DetalleMesa> getAllDetallePedidos() {
         return detallePedidoMesaService.getAllDetallePedidoMesas();
     }
 
     @GetMapping("/{id}")
-    public Optional<DetallePedidoMesa> getDetallePedidoById(@PathVariable Long id) {
+    public Optional<DetalleMesa> getDetallePedidoById(@PathVariable Long id) {
         return detallePedidoMesaService.getDetallePedidoMesaById(id);
     }
 
     @PostMapping
-    public DetallePedidoMesa postDetallePedido(@RequestBody DetallePedidoMesa request) {
+    public DetalleMesa postDetallePedido(@RequestBody DetalleMesa request) {
         detallePedidoMesaService.postDetallePedidoMesa(request);
         return request;
     }
 
     @PutMapping("/{id}")
-    public DetallePedidoMesa putDetallePedido(@PathVariable Long id, @RequestBody DetallePedidoMesa request) {
+    public DetalleMesa putDetallePedido(@PathVariable Long id, @RequestBody DetalleMesa request) {
         return detallePedidoMesaService.putDetallePedidoMesa(request, id);
     }
 

@@ -27,10 +27,6 @@ public class DetallePedido {
     private Integer cantidad;
     private Boolean estado;
 
-    @OneToOne (mappedBy = "detallePedido", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private DetallePedidoMesa detallePedidoMesa;
-
     // CONSTRUCTOR
 
     public DetallePedido() {}
@@ -85,14 +81,6 @@ public class DetallePedido {
         this.estado = estado;
     }
 
-    public DetallePedidoMesa getDetallePedidoMesa() {
-        return detallePedidoMesa;
-    }
-
-    public void setDetallePedidoMesa(DetallePedidoMesa detallePedidoMesa) {
-        this.detallePedidoMesa = detallePedidoMesa;
-    }
-
     @Override
     public String toString() {
         return "DetallePedido{" +
@@ -102,7 +90,6 @@ public class DetallePedido {
                 ", descripcion='" + descripcion + '\'' +
                 ", cantidad=" + cantidad +
                 ", estado=" + estado +
-                ", detallePedidoMesa=" + detallePedidoMesa +
                 '}';
     }
 }

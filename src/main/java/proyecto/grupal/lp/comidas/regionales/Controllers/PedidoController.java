@@ -2,12 +2,12 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoGetRequest;
 import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
-import proyecto.grupal.lp.comidas.regionales.Entities.PedidoDtoRequest;
+import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoPostRequest;
 import proyecto.grupal.lp.comidas.regionales.Services.IPedidoService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/pedido")
@@ -22,12 +22,12 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Pedido> getPedidoById(@PathVariable Long id) {
+    public PedidoDtoGetRequest getPedidoById(@PathVariable Long id) {
         return pedidoService.getPedidoById(id);
     }
 
     @PostMapping
-    public Pedido postPedido(@RequestBody PedidoDtoRequest request) {
+    public Pedido postPedido(@RequestBody PedidoDtoPostRequest request) {
         return pedidoService.postPedido(request);
     }
 
