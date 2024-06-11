@@ -16,6 +16,10 @@ public class Salon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name ="sucursal_id",referencedColumnName = "id" )
+    private Sucursal sucursal;
+
     private Integer piso;
     private String nombre;
     private Integer aforo;
@@ -32,7 +36,6 @@ public class Salon {
 
     // GETTERS Y SETTERS
 
-
     public Long getId() {
         return id;
     }
@@ -40,6 +43,15 @@ public class Salon {
     public void setId(Long id) {
         this.id = id;
     }
+
+        public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
 
     public Integer getPiso() {
         return piso;
@@ -85,6 +97,7 @@ public class Salon {
     public String toString() {
         return "Salon{" +
                 "id=" + id +
+                ", sucursal=" + sucursal +
                 ", piso=" + piso +
                 ", nombre='" + nombre + '\'' +
                 ", aforo=" + aforo +

@@ -17,6 +17,10 @@ public class Carta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name ="sucursal_id",referencedColumnName = "id" )
+    private Sucursal sucursal;
+
     private String nombre;
     private Boolean estado;
 
@@ -37,6 +41,14 @@ public class Carta {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
     public String getNombre() {
@@ -67,6 +79,7 @@ public class Carta {
     public String toString() {
         return "Carta{" +
                 "id=" + id +
+                ", sucursal=" + sucursal +
                 ", nombre='" + nombre + '\'' +
                 ", estado=" + estado +
                 ", seccion=" + seccion +
