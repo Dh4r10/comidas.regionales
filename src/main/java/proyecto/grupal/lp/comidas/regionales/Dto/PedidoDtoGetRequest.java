@@ -10,8 +10,8 @@ public class PedidoDtoGetRequest {
 
     private LocalDate fecha;
     private String estadoPedido;
-    private List<DetallePedidoDto> listaPedidos;
-    private List<DetalleMesaDto> listaMesas;
+    private List<DetallePedidoDtoCopia> listaPedidos;
+    private List<DetalleMesaDtoCopia> listaMesas;
 
     public long getIdPedido() {
         return idPedido;
@@ -45,19 +45,19 @@ public class PedidoDtoGetRequest {
         this.estadoPedido = estadoPedido;
     }
 
-    public List<DetallePedidoDto> getListaPedidos() {
+    public List<DetallePedidoDtoCopia> getListaPedidos() {
         return listaPedidos;
     }
 
-    public void setListaPedidos(List<DetallePedidoDto> listaPedidos) {
+    public void setListaPedidos(List<DetallePedidoDtoCopia> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
 
-    public List<DetalleMesaDto> getListaMesas() {
+    public List<DetalleMesaDtoCopia> getListaMesas() {
         return listaMesas;
     }
 
-    public void setListaMesas(List<DetalleMesaDto> listaMesas) {
+    public void setListaMesas(List<DetalleMesaDtoCopia> listaMesas) {
         this.listaMesas = listaMesas;
     }
 }

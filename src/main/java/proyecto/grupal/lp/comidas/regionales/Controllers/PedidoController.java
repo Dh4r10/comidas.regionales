@@ -8,6 +8,7 @@ import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoPostRequest;
 import proyecto.grupal.lp.comidas.regionales.Services.IPedidoService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/pedido")
@@ -22,7 +23,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public PedidoDtoGetRequest getPedidoById(@PathVariable Long id) {
+    public Optional<Pedido> getPedidoById(@PathVariable Long id) {
         return pedidoService.getPedidoById(id);
     }
 

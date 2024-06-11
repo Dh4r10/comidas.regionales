@@ -5,11 +5,12 @@ import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoPostRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IPedidoService {
 
     List<Pedido> getAllPedidos();
-    PedidoDtoGetRequest getPedidoById(Long id);
+    Optional<Pedido> getPedidoById(Long id);
     Pedido postPedido(PedidoDtoPostRequest request);
     Pedido putPedido(Pedido request, Long id);
     void deletePedido(Long id);

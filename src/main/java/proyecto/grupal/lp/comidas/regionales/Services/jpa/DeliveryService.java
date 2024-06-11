@@ -3,7 +3,7 @@ package proyecto.grupal.lp.comidas.regionales.Services.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Dto.DeliveryGetRequestDto;
-import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoDto;
+import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoDtoCopia;
 import proyecto.grupal.lp.comidas.regionales.Entities.Delivery;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetallePedido;
 import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
@@ -40,7 +40,7 @@ public class DeliveryService implements IDeliveryService {
         Optional<Delivery> delivery = deliveryRepository.findById(id);
         
         List<DetallePedido> detallePedido = detallePedidoRepository.findAll();
-        List<DetallePedidoDto> listaPedidos = new ArrayList<>();
+        List<DetallePedidoDtoCopia> listaPedidos = new ArrayList<>();
 
         long pedidoId = delivery.get().getPedido().getId();
         Optional<Pedido> pedido = pedidoRepository.findById(pedidoId);
@@ -60,16 +60,16 @@ public class DeliveryService implements IDeliveryService {
         for (DetallePedido value : detallePedido) {
             if (numPedidos > contador) {
                     if (value.getPedido().getId() == pedidoId) {
-                    DetallePedidoDto detallePedidoDto = new DetallePedidoDto();
-                    detallePedidoDto.setProductoId(value.getProducto().getId());
-                    detallePedidoDto.setNombreProducto(value.getProducto().getNombre());
-                    detallePedidoDto.setDescripcionProducto(value.getProducto().getDescripcion());
-                    detallePedidoDto.setPrecioProducto(value.getProducto().getPrecio());
-                    detallePedidoDto.setImagenProducto(value.getProducto().getImagen());
-                    detallePedidoDto.setDescripcion(value.getProducto().getDescripcion());
-                    detallePedidoDto.setCantidad(value.getCantidad());
+                    DetallePedidoDtoCopia detallePedidoDtoCopia = new DetallePedidoDtoCopia();
+                    detallePedidoDtoCopia.setProductoId(value.getProducto().getId());
+                    detallePedidoDtoCopia.setNombreProducto(value.getProducto().getNombre());
+                    detallePedidoDtoCopia.setDescripcionProducto(value.getProducto().getDescripcion());
+                    detallePedidoDtoCopia.setPrecioProducto(value.getProducto().getPrecio());
+                    detallePedidoDtoCopia.setImagenProducto(value.getProducto().getImagen());
+                    detallePedidoDtoCopia.setDescripcion(value.getProducto().getDescripcion());
+                    detallePedidoDtoCopia.setCantidad(value.getCantidad());
 
-                    listaPedidos.add(detallePedidoDto);
+                    listaPedidos.add(detallePedidoDtoCopia);
 
                     contador ++;
                 }

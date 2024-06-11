@@ -11,7 +11,7 @@ public class DeliveryGetRequestDto {
     private String direccion;
     private LocalDate fecha;
     private String estadoPedido;
-    private List<DetallePedidoDto> listaPedidos;
+    private List<DetallePedidoDtoCopia> listaPedidos;
 
     public long getIdPedido() {
         return idPedido;
@@ -61,11 +61,11 @@ public class DeliveryGetRequestDto {
         this.estadoPedido = estadoPedido;
     }
 
-    public List<DetallePedidoDto> getListaPedidos() {
+    public List<DetallePedidoDtoCopia> getListaPedidos() {
         return listaPedidos;
     }
 
-    public void setListaPedidos(List<DetallePedidoDto> listaPedidos) {
+    public void setListaPedidos(List<DetallePedidoDtoCopia> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
 }
