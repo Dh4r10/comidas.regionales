@@ -34,6 +34,8 @@ public class EstableciminetoService implements IEstableciminetoServices {
     est.setRepresentante_legal(establecimiento.getRepresentante_legal());
     est.setSitio_web(establecimiento.getSitio_web());
     est.setRuc(establecimiento.getRuc());
+    est.setNombre(establecimiento.getNombre());
+    est.setLogo(establecimiento.getLogo());
     est.setEstado(establecimiento.getEstado());
         return establecimientoRepository.save(est);
     }

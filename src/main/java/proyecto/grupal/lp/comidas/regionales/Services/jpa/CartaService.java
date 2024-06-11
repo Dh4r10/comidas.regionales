@@ -44,6 +44,12 @@ public class CartaService implements ICartaService {
             carta.setEstado(request.getEstado());
         }
 
+        if (request.getSucursal() == null) {
+            carta.setSucursal(carta.getSucursal());
+        } else {
+            carta.setSucursal(request.getSucursal());
+        }
+
         return cartaRepository.save(carta);
     }
 
@@ -54,6 +60,12 @@ public class CartaService implements ICartaService {
             carta.setNombre(carta.getNombre());
         } else {
             carta.setNombre(request.getNombre());
+        }
+
+        if (request.getSucursal() == null) {
+            carta.setSucursal(carta.getSucursal());
+        } else {
+            carta.setSucursal(request.getSucursal());
         }
 
         if (request.getEstado() == null) {

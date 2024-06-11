@@ -39,6 +39,12 @@ public class SalonService implements ISalonService {
         salon.setNombre(request.getNombre());
         salon.setAforo(request.getAforo());
 
+        if (request.getSucursal() == null) {
+            salon.setSucursal(salon.getSucursal());
+        } else {
+            salon.setSucursal(request.getSucursal());
+        }
+
         if (request.getEstado() == null) {
             salon.setEstado(salon.getEstado());
         } else {
@@ -56,6 +62,12 @@ public class SalonService implements ISalonService {
             salon.setPiso(salon.getPiso());
         } else {
             salon.setPiso(request.getPiso());
+        }
+
+        if (request.getSucursal() == null) {
+            salon.setSucursal(salon.getSucursal());
+        } else {
+            salon.setSucursal(request.getSucursal());
         }
 
         if (request.getNombre() == null) {

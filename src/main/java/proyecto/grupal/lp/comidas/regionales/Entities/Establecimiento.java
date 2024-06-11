@@ -11,7 +11,7 @@ public class Establecimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-
+    private String nombre;
     private String ruc;
     private String razon_social;
     private String telefono;
@@ -20,6 +20,7 @@ public class Establecimiento {
     private RepresentanteLegal representante_legal;
     private String sitio_web;
     private Boolean estado=true;
+    private String logo;
 
     /*Esto es para que la relación sea vi direccional, en este caso no lo necesitamos, porque solo
     * requeremimos los datos del establecimiento en la otra tabla*/
@@ -92,10 +93,27 @@ public class Establecimiento {
         this.representante_legal = representante_legal;
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
         return "Establecimiento{" +
                 "id=" + id +
+                ", nombre='" + nombre + '\'' +
                 ", ruc='" + ruc + '\'' +
                 ", razon_social='" + razon_social + '\'' +
                 ", telefono='" + telefono + '\'' +
@@ -103,6 +121,7 @@ public class Establecimiento {
                 ", representante_legal=" + representante_legal +
                 ", sitio_web='" + sitio_web + '\'' +
                 ", estado=" + estado +
+                ", logo='" + logo + '\'' +
                 '}';
     }
 }

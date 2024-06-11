@@ -3,14 +3,16 @@ package proyecto.grupal.lp.comidas.regionales.Dto;
 import java.time.LocalDate;
 import java.util.List;
 
-public class PedidoDtoPostRequest {
+public class DetallePedidoPostRequest {
 
     private LocalDate fecha;
     private String tipoPedido;
+
     private String direccion;
     private String numeroContacto;
-    private List<DetallePedidoDtoCopia> listaPedido;
-    private List<DetalleMesaDtoCopia> listaMesa;
+
+    private List<DetallePedidoDto> listaPedidos;
+    private List<DetalleMesaDto> listaMesas;
 
     public LocalDate getFecha() {
         return fecha;
@@ -44,19 +46,19 @@ public class PedidoDtoPostRequest {
         this.numeroContacto = numeroContacto;
     }
 
-    public List<DetallePedidoDtoCopia> getListaPedido() {
-        return listaPedido;
+    public List<DetallePedidoDto> getListaPedidos() {
+        return listaPedidos;
     }
 
-    public void setListaPedido(List<DetallePedidoDtoCopia> listaPedido) {
-        this.listaPedido = listaPedido;
+    public void setListaPedidos(List<DetallePedidoDto> listaPedidos) {
+        this.listaPedidos = listaPedidos;
     }
 
-    public List<DetalleMesaDtoCopia> getListaMesa() {
-        return listaMesa;
+    public List<DetalleMesaDto> getListaMesas() {
+        return listaMesas;
     }
 
-    public void setListaMesa(List<DetalleMesaDtoCopia> listaMesa) {
-        this.listaMesa = listaMesa;
+    public void setListaMesas(List<DetalleMesaDto> listaMesas) {
+        this.listaMesas = listaMesas;
     }
 }

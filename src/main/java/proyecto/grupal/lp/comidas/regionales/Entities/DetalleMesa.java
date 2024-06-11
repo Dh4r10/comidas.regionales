@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 
 @Entity
-@Table(name = "detalle_pedido_mesa")
-@SQLDelete(sql = "UPDATE detalle_pedido_mesa SET estado = false WHERE id = ?")
+@Table(name = "detalle_mesa")
+@SQLDelete(sql = "UPDATE detalle_mesa SET estado = false WHERE id = ?")
 public class DetalleMesa {
 
     // CAMPOS
