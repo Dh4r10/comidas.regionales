@@ -2,6 +2,7 @@ package proyecto.grupal.lp.comidas.regionales.Security.jwt;
 
 import java.security.Key;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import proyecto.grupal.lp.comidas.regionales.Entities.Sucursal;
 import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
 import proyecto.grupal.lp.comidas.regionales.Repositories.RefreshTokenRepository;
+import proyecto.grupal.lp.comidas.regionales.Repositories.SucursalesRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.UsuarioRepository;
 
 @Service
@@ -26,26 +29,36 @@ public class JwtServices {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
+    @Autowired
+    private SucursalesRepository sucursalesRepository;
 
     public String getToken(UserDetails userDetails){
       Usuario usuario=usuarioRepository.findByUsername(userDetails.getUsername()).orElseThrow();
         refreshTokenRepository.deleteByUsuario(usuario);
 
-
         Map<String,Object> extraclaims=new HashMap<>();
         extraclaims.put("tipo_usuario",usuario.getTipoUsuario().getId());
-
         Set<Long> sucursalesIDs= usuario.getResponsables()
                 .stream().filter(Objects::nonNull)
-                .map(r-> r.getSucursal().getId())
+                .map(r-> {
+
+                    return r.getSucursal().getId();
+                })
                 .collect(Collectors.toSet());
+        if(sucursalesIDs.stream().count()>0){
+        Sucursal sucursal=sucursalesRepository.findById(sucursalesIDs.stream().findFirst().get())
+               .orElseThrow();
 
+        extraclaims.put("establecimiento",sucursal.getIdEstablecimiento().getId());
+        }
 
+        extraclaims.put("sucursales",sucursalesIDs);
 
-       extraclaims.put("sucursales",sucursalesIDs);
 
         return getToken(extraclaims, userDetails);
     }
+
+
 
     private String getToken(Map<String,Object> extraclaims, UserDetails userDetails){
 
