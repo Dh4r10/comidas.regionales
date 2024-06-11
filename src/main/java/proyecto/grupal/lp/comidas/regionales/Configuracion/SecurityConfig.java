@@ -40,7 +40,7 @@ public class SecurityConfig {
 						.permitAll()
 						.requestMatchers(HttpMethod.POST,"/api/v1/usuarios/tipo-usuario/**")
 						.permitAll()
-						.anyRequest().authenticated()
+						.anyRequest().permitAll()
         		).exceptionHandling((exception)->exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sessionManager->
                 sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

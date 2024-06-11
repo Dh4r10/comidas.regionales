@@ -1,9 +1,13 @@
 package proyecto.grupal.lp.comidas.regionales.Security.jwt;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,9 +40,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         try {
             username = jwtService.getUsernameFromToken(token);
-
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                  UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
                 if (jwtService.isTokenValid(token, userDetails)) {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -49,7 +52,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             }
         }catch (Exception e){
-        
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+            final Map<String, Object> body = new HashMap<>();
+            body.put("status", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            body.put("error", "server error");
+            body.put("message", e.getMessage());
+            body.put("path", request.getServletPath());
+
+            final ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(response.getOutputStream(), body);
         }
 
         filterChain.doFilter(request,response);

@@ -62,7 +62,11 @@ public class VentaServiceImpl implements IVentaService {
 
     @Override
     public List<Venta> verTodasVentas() {
-        return ventaRepository.findAll();
+
+
+        return ventaRepository.findAll().stream().filter(v->
+                v.getApertura().getCaja().getIdSucursal().getId().equals(1L)
+                ).toList();
     }
 
     @Override

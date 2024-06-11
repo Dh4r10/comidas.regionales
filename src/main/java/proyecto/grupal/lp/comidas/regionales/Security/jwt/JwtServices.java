@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,23 +15,34 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
+import proyecto.grupal.lp.comidas.regionales.Repositories.UsuarioRepository;
 
 @Service
 public class JwtServices {
 
     private static final String SECRET_KEY="1032SISTEMAGESTIONFINAZAS2000121383839BJNSNANBYSTEVENANDRE";
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public String getToken(UserDetails userDetails){
-        return getToken(new HashMap<>(), userDetails);
+      //  Usuario usuario=usuarioRepository.findByUsername(userDetails.getUsername()).orElseThrow();
+
+
+
+        Map<String,Object> extraclaims=new HashMap<>();
+
+        return getToken(extraclaims, userDetails);
     }
 
     private String getToken(Map<String,Object> extraclaims, UserDetails userDetails){
+
         return Jwts
                 .builder()
                 .setClaims(extraclaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()*1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis()+(50 * 60 * 1000)))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
