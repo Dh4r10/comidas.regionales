@@ -72,6 +72,18 @@ public class Usuario implements UserDetails{
 		return id;
 	}
 
+
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+	private List<Responsable> responsables;
+
+	public List<Responsable> getResponsables() {
+		return responsables;
+	}
+
+	public void setResponsables(List<Responsable> responsables) {
+		this.responsables = responsables;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

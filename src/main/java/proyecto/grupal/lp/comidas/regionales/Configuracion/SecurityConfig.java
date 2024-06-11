@@ -15,7 +15,6 @@ import proyecto.grupal.lp.comidas.regionales.Security.jwt.JwtAuthenticationEntry
 import proyecto.grupal.lp.comidas.regionales.Security.jwt.JwtAuthenticationFilter;
 
 @Configuration
-
 public class SecurityConfig {
 
 	@Autowired
@@ -27,7 +26,7 @@ public class SecurityConfig {
 
 
 	@Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws  Exception{
+    SecurityFilterChain securityFilterChainA(HttpSecurity httpSecurity) throws  Exception{
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
         		.authorizeHttpRequests(ar -> 
         		ar.requestMatchers("/api/v1/auth/**","/v3/api-docs/**",

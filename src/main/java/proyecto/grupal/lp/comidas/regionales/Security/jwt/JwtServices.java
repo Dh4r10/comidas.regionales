@@ -4,7 +4,9 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,11 +28,15 @@ public class JwtServices {
     private UsuarioRepository usuarioRepository;
 
     public String getToken(UserDetails userDetails){
-      //  Usuario usuario=usuarioRepository.findByUsername(userDetails.getUsername()).orElseThrow();
+      Usuario usuario=usuarioRepository.findByUsername(userDetails.getUsername()).orElseThrow();
 
 
 
         Map<String,Object> extraclaims=new HashMap<>();
+        extraclaims.put("tipo_usuario",usuario.getTipoUsuario().getId());
+        Set<Long> sucursalesIDs=usuario.getResponsables().stream().map(r-> r.getSucursal().getId()
+        ).collect(Collectors.toSet());
+        extraclaims.put("sucursales",sucursalesIDs);
 
         return getToken(extraclaims, userDetails);
     }
