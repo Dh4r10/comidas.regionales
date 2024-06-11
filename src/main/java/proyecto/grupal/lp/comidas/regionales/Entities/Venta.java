@@ -37,6 +37,10 @@ public class Venta {
     @OneToOne
     private Pedido pedido;
 
+    @ManyToOne
+    @JoinColumn(name = "apertura_id",referencedColumnName = "id")
+    private Apertura apertura;
+
 
     public Cliente getCliente() {
         return cliente;
@@ -130,6 +134,14 @@ public class Venta {
 
     public Boolean getEstado() {
         return estado;
+    }
+
+    public Apertura getApertura() {
+        return apertura;
+    }
+
+    public void setApertura(Apertura apertura) {
+        this.apertura = apertura;
     }
 
     public void setEstado(Boolean estado) {

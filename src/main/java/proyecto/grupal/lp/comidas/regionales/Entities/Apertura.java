@@ -3,6 +3,7 @@ package proyecto.grupal.lp.comidas.regionales.Entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="apertura")
@@ -22,6 +23,10 @@ public class Apertura {
 
     @ManyToOne
     private Caja caja;
+
+    @OneToMany(mappedBy = "apertura",fetch = FetchType.LAZY)
+    private List<Venta> ventas;
+
 
     public Long getId() {
         return id;
@@ -69,6 +74,14 @@ public class Apertura {
 
     public void setCaja(Caja caja) {
         this.caja = caja;
+    }
+
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
     }
 
     @Override
