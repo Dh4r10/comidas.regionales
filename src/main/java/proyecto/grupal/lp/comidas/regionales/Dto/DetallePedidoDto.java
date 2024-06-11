@@ -1,60 +1,43 @@
 package proyecto.grupal.lp.comidas.regionales.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.math.BigDecimal;
+import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
+import proyecto.grupal.lp.comidas.regionales.Entities.Producto;
 
 public class DetallePedidoDto {
 
-    @JsonProperty("producto_id")
-    private Long productoId;
+    @JsonProperty("id")
+    private Long idDetallePedido;
 
-    private String nombreProducto;
-    private String descripcionProducto;
-    private BigDecimal precioProducto;
-    private String imagenProducto;
+    private Long idPedido;
+    private Long idProducto;
 
     private String descripcion;
     private Integer cantidad;
+    private Boolean estado;
 
-    public Long getProductoId() {
-        return productoId;
+    public Long getIdDetallePedido() {
+        return idDetallePedido;
     }
 
-    public void setProductoId(Long productoId) {
-        this.productoId = productoId;
+    public void setIdDetallePedido(Long idDetallePedido) {
+        this.idDetallePedido = idDetallePedido;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public Long getIdPedido() {
+        return idPedido;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public void setPedido(Long idPedido) {
+        this.idPedido = idPedido;
     }
 
-    public String getDescripcionProducto() {
-        return descripcionProducto;
+    public Long getIdProducto() {
+        return idProducto;
     }
 
-    public void setDescripcionProducto(String descripcionProducto) {
-        this.descripcionProducto = descripcionProducto;
-    }
-
-    public BigDecimal getPrecioProducto() {
-        return precioProducto;
-    }
-
-    public void setPrecioProducto(BigDecimal precioProducto) {
-        this.precioProducto = precioProducto;
-    }
-
-    public String getImagenProducto() {
-        return imagenProducto;
-    }
-
-    public void setImagenProducto(String imagenProducto) {
-        this.imagenProducto = imagenProducto;
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getDescripcion() {
@@ -71,5 +54,13 @@ public class DetallePedidoDto {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }

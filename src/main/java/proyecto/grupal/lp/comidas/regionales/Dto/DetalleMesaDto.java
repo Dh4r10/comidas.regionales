@@ -1,63 +1,47 @@
 package proyecto.grupal.lp.comidas.regionales.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import proyecto.grupal.lp.comidas.regionales.Entities.Mesa;
 
 public class DetalleMesaDto {
 
-    @JsonProperty("mesa_id")
-    private Long mesaId;
+    @JsonProperty("id")
+    private Long idDetalleMesa;
 
-    private String tipoMesa;
-    private Integer numero;
-    private Integer capacidad;
-    private Boolean reservado;
-    private Boolean ocupado;
+    private Long idPedido;
+    private Long idMesa;
 
-    public Long getMesaId() {
-        return mesaId;
+    private Boolean estado;
+
+    public Long getIdDetalleMesa() {
+        return idDetalleMesa;
     }
 
-    public void setMesaId(Long mesaId) {
-        this.mesaId = mesaId;
+    public void setIdDetalleMesa(Long idDetalleMesa) {
+        this.idDetalleMesa = idDetalleMesa;
     }
 
-    public String getTipoMesa() {
-        return tipoMesa;
+    public Long getIdPedido() {
+        return idPedido;
     }
 
-    public void setTipoMesa(String tipoMesa) {
-        this.tipoMesa = tipoMesa;
+    public void setIdPedido(Long idPedido) {
+        this.idPedido = idPedido;
     }
 
-    public Integer getNumero() {
-        return numero;
+    public Long getIdMesa() {
+        return idMesa;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    public void setIdMesa(Long idMesa) {
+        this.idMesa = idMesa;
     }
 
-    public Integer getCapacidad() {
-        return capacidad;
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public Boolean getReservado() {
-        return reservado;
-    }
-
-    public void setReservado(Boolean reservado) {
-        this.reservado = reservado;
-    }
-
-    public Boolean getOcupado() {
-        return ocupado;
-    }
-
-    public void setOcupado(Boolean ocupado) {
-        this.ocupado = ocupado;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }
