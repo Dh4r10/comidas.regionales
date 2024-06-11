@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import proyecto.grupal.lp.comidas.regionales.Dto.LoginRequest;
 import proyecto.grupal.lp.comidas.regionales.Dto.TokenDto;
 import proyecto.grupal.lp.comidas.regionales.Entities.RefreshToken;

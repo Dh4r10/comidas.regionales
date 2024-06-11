@@ -1,10 +1,7 @@
 package proyecto.grupal.lp.comidas.regionales.Security.jwt;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -18,6 +15,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import proyecto.grupal.lp.comidas.regionales.Entities.Usuario;
+import proyecto.grupal.lp.comidas.regionales.Repositories.RefreshTokenRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.UsuarioRepository;
 
 @Service
@@ -26,17 +24,25 @@ public class JwtServices {
     private static final String SECRET_KEY="1032SISTEMAGESTIONFINAZAS2000121383839BJNSNANBYSTEVENANDRE";
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private RefreshTokenRepository refreshTokenRepository;
 
     public String getToken(UserDetails userDetails){
       Usuario usuario=usuarioRepository.findByUsername(userDetails.getUsername()).orElseThrow();
-
+        refreshTokenRepository.deleteByUsuario(usuario);
 
 
         Map<String,Object> extraclaims=new HashMap<>();
         extraclaims.put("tipo_usuario",usuario.getTipoUsuario().getId());
-        Set<Long> sucursalesIDs=usuario.getResponsables().stream().map(r-> r.getSucursal().getId()
-        ).collect(Collectors.toSet());
-        extraclaims.put("sucursales",sucursalesIDs);
+
+        Set<Long> sucursalesIDs= usuario.getResponsables()
+                .stream().filter(Objects::nonNull)
+                .map(r-> r.getSucursal().getId())
+                .collect(Collectors.toSet());
+
+
+
+       extraclaims.put("sucursales",sucursalesIDs);
 
         return getToken(extraclaims, userDetails);
     }
