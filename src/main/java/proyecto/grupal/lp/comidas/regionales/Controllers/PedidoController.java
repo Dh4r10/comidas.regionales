@@ -2,9 +2,7 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoGetRequest;
 import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
-import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDtoPostRequest;
 import proyecto.grupal.lp.comidas.regionales.Services.IPedidoService;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public Pedido postPedido(@RequestBody PedidoDtoPostRequest request) {
+    public Pedido postPedido(@RequestBody Pedido request) {
         return pedidoService.postPedido(request);
     }
 

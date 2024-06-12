@@ -1,7 +1,6 @@
 package proyecto.grupal.lp.comidas.regionales.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import proyecto.grupal.lp.comidas.regionales.Entities.Mesa;
 
 public class DetalleMesaDto {
 

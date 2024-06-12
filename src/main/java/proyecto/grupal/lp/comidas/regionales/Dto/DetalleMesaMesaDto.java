@@ -2,23 +2,39 @@ package proyecto.grupal.lp.comidas.regionales.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DetalleMesaDtoCopia {
+public class DetalleMesaMesaDto {
 
-    @JsonProperty("mesa_id")
-    private Long idMesa;
+    @JsonProperty("id")
+    private Long detalleMesaId;
 
+    private Long mesaId;
+    private Long areaId;
     private String tipoMesa;
     private Integer numero;
     private Integer capacidad;
-    private Boolean reservado;
-    private Boolean ocupado;
 
-    public Long getIdMesa() {
-        return idMesa;
+    public Long getDetalleMesaId() {
+        return detalleMesaId;
     }
 
-    public void setIdMesa(Long idMesa) {
-        this.idMesa = idMesa;
+    public void setDetalleMesaId(Long detalleMesaId) {
+        this.detalleMesaId = detalleMesaId;
+    }
+
+    public Long getMesaId() {
+        return mesaId;
+    }
+
+    public void setMesaId(Long mesaId) {
+        this.mesaId = mesaId;
+    }
+
+    public Long getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
     }
 
     public String getTipoMesa() {
@@ -43,21 +59,5 @@ public class DetalleMesaDtoCopia {
 
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
-    }
-
-    public Boolean getReservado() {
-        return reservado;
-    }
-
-    public void setReservado(Boolean reservado) {
-        this.reservado = reservado;
-    }
-
-    public Boolean getOcupado() {
-        return ocupado;
-    }
-
-    public void setOcupado(Boolean ocupado) {
-        this.ocupado = ocupado;
     }
 }

@@ -12,7 +12,6 @@ import java.util.Set;
 @Repository
 public interface MesaRepository extends JpaRepository<Mesa, Long> {
 
-
     @Modifying
     @Query(value = "UPDATE Mesa set ocupado = false WHERE id IN :ids")
     int updateMesaOcupada(@Param("ids") Set<Long> idsMesas);

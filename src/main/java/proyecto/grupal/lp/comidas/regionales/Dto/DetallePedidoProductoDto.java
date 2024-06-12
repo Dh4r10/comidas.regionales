@@ -1,14 +1,13 @@
 package proyecto.grupal.lp.comidas.regionales.Dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigDecimal;
 
-public class DetallePedidoDtoCopia {
+public class DetallePedidoProductoDto {
 
-    @JsonProperty("producto_id")
+    private Long detallePedidoId;
+
     private Long productoId;
-
+    private String tipoProducto;
     private String nombreProducto;
     private String descripcionProducto;
     private BigDecimal precioProducto;
@@ -17,12 +16,28 @@ public class DetallePedidoDtoCopia {
     private String descripcion;
     private Integer cantidad;
 
+    public Long getDetallePedidoId() {
+        return detallePedidoId;
+    }
+
+    public void setDetallePedidoId(Long detallePedidoId) {
+        this.detallePedidoId = detallePedidoId;
+    }
+
     public Long getProductoId() {
         return productoId;
     }
 
     public void setProductoId(Long productoId) {
         this.productoId = productoId;
+    }
+
+    public String getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(String tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 
     public String getNombreProducto() {
