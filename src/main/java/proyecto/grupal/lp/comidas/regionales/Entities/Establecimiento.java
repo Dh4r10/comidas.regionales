@@ -1,11 +1,13 @@
 package proyecto.grupal.lp.comidas.regionales.Entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.SQLDelete;
+import org. hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "establecimiento")
 @SQLDelete(sql="UPDATE establecimiento SET estado=false WHERE id=?")
+@Where(clause = "estado = true")
 public class Establecimiento {
 
     @Id
@@ -19,7 +21,7 @@ public class Establecimiento {
     @ManyToOne
     private RepresentanteLegal representante_legal;
     private String sitio_web;
-    private Boolean estado=true;
+    private Boolean estado;
     private String logo;
 
     /*Esto es para que la relación sea vi direccional, en este caso no lo necesitamos, porque solo
@@ -107,6 +109,9 @@ public class Establecimiento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Establecimiento() {
     }
 
     @Override
