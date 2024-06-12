@@ -1,5 +1,6 @@
 package proyecto.grupal.lp.comidas.regionales.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -34,6 +35,7 @@ public class Cliente {
     }
 
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Venta> ventas= new ArrayList<>();
 
     public Long getId() {

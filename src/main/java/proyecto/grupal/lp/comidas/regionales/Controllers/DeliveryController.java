@@ -2,7 +2,6 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import proyecto.grupal.lp.comidas.regionales.Dto.DeliveryGetRequestDto;
 import proyecto.grupal.lp.comidas.regionales.Entities.Delivery;
 import proyecto.grupal.lp.comidas.regionales.Services.IDeliveryService;
 
@@ -22,7 +21,7 @@ public class DeliveryController {
     }
 
     @GetMapping("/{id}")
-    public DeliveryGetRequestDto getDeliveryById(@PathVariable Long id){
+    public Optional<Delivery> getDeliveryById(@PathVariable Long id){
         return deliveryService.getDeliveryById(id);
     }
 

@@ -2,8 +2,9 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoDto;
+import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoDeliveryGetRequest;
 import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoPostRequest;
+import proyecto.grupal.lp.comidas.regionales.Dto.DetallePedidoSalonGetRequest;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetallePedido;
 import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetallePedidoService;
@@ -26,6 +27,16 @@ public class DetallePedidoController {
     @GetMapping("/{id}")
     public Optional<DetallePedido> getDetallePedidoById(@PathVariable Long id) {
         return detallePedidoService.getDetallePedidoById(id);
+    }
+
+    @GetMapping("/delivery/{id}")
+    public DetallePedidoDeliveryGetRequest getDetallePedidoDeliveryById(@PathVariable Long id){
+        return detallePedidoService.getDetallePedidoDeliveryById(id);
+    }
+
+    @GetMapping("/salon/{id}")
+    public DetallePedidoSalonGetRequest getDetallePedidoSalonById(@PathVariable Long id){
+        return detallePedidoService.getDetallePedidoSalonById(id);
     }
 
     @PostMapping

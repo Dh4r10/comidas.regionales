@@ -1,4 +1,5 @@
 package proyecto.grupal.lp.comidas.regionales.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -74,6 +75,7 @@ public class Usuario implements UserDetails{
 
 
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Responsable> responsables;
 
 	public List<Responsable> getResponsables() {
