@@ -17,8 +17,14 @@ public class EstablecimientoController {
     private IEstableciminetoServices establecimientoServices;
 
     @GetMapping
-   public List<Establecimiento> obtenerEstablecimiento() {
+    public List<Establecimiento> obtenerEstablecimiento() {
         return establecimientoServices.getEstablecimiento();
+    }
+
+    @GetMapping("/condicionado/{idE}")
+    //El PathVariable se utiliza para extraer valores de la URL de la api y así filtrar
+    public Optional<Establecimiento> obtenerEstablecimientoCondicionado(@PathVariable Long idE) {
+      return  establecimientoServices.getEstablecimientoCondicionado(idE);
     }
 
         //Para filtrar por Id

@@ -17,6 +17,10 @@ public class EstablecimientoService implements IEstableciminetoServices {
     public List<Establecimiento> getEstablecimiento(){
         return  establecimientoRepository.findAll();
     }
+
+    public Optional<Establecimiento> getEstablecimientoCondicionado(Long idE){
+        return establecimientoRepository.findById(idE);
+    }
     //Aquí estamos filtrando las opociones del get por cada id
     public Optional<Establecimiento> getEstablecimientoId(Long id){
         return establecimientoRepository.findById(id);
