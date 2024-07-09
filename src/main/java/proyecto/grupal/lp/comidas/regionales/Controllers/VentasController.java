@@ -45,6 +45,11 @@ public class VentasController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/all/sucursal/{id}")
+    public ResponseEntity<?> verVentasPorSucursal(@PathVariable Long id){
+        return ResponseEntity.ok(ventaService.listarVentarPorSucursal(id));
+    }
+
 
 
 

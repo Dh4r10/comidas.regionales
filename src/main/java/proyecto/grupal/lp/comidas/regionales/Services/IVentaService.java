@@ -15,7 +15,7 @@ public interface IVentaService {
 
     Venta obtenerVentaPorId(Long id);
 
-
+    List<Venta> listarVentarPorSucursal(Long sucursalID);
     void anularVenta(Long id);
 
 
