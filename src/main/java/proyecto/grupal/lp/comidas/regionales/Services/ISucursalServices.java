@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ISucursalServices {
 
-    List<Sucursal> getSucursales();
+    List<Sucursal> getSucursales(Long idE);
     Optional<Sucursal> getSucursalesId(Long id);
     void postSucursal(Sucursal sucursal);
     Sucursal putSucursal(Sucursal sucursal,Long id);

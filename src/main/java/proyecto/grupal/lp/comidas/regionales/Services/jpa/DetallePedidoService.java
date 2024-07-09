@@ -181,9 +181,9 @@ public class DetallePedidoService implements IDetallePedidoService {
         }).toList();
 
         if (pedidoGuardado.getTipoPedido().equals("SALON")) {
-            request.getListaMesas().stream().map(detalleMesaDtoCopia -> {
+            request.getListaMesas().stream().map(detalleMesaDto -> {
                 DetalleMesa detalleMesa = new DetalleMesa();
-                Mesa mesa = mesaRepository.findById(detalleMesaDtoCopia.getIdMesa()).orElseThrow();
+                Mesa mesa = mesaRepository.findById(detalleMesaDto.getIdMesa()).orElseThrow();
                 detalleMesa.setMesa(mesa);
                 detalleMesa.setPedido(pedidoGuardado);
                 detalleMesa.setEstado(true);

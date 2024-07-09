@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface IEstableciminetoServices {
 
     List<Establecimiento> getEstablecimiento();
+    Optional<Establecimiento> getEstablecimientoCondicionado(Long idE);
     Optional<Establecimiento> getEstablecimientoId(Long id);
     void postEstablecimiento(Establecimiento establecimiento);
     Establecimiento putEstablecimiento(Establecimiento establecimiento,Long id);

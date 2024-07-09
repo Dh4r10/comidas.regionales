@@ -14,8 +14,8 @@ public class SucursalesService implements ISucursalServices {
     @Autowired
     private SucursalesRepository sucursalesRepository;
 
-    public List<Sucursal> getSucursales() {
-        return sucursalesRepository.findAll();
+    public List<Sucursal> getSucursales(Long idE) {
+        return sucursalesRepository.findAll().stream().filter(s->s.getIdEstablecimiento().getId()==idE).toList();
     }
 
     public Optional<Sucursal> getSucursalesId(Long id) {

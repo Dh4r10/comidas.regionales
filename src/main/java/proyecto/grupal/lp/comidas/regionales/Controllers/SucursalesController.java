@@ -15,11 +15,11 @@ public class SucursalesController {
 
     @Autowired private ISucursalServices sucursalServices;
 
-    @GetMapping
-    public List<Sucursal> getSucursales(){
-        return sucursalServices.getSucursales();
+    @GetMapping("/{idE}")
+    public List<Sucursal> getSucursales(@PathVariable Long idE){
+        return sucursalServices.getSucursales(idE);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/f/{id}")
     public Optional<Sucursal> getSucursalId(@PathVariable Long id){
         return sucursalServices.getSucursalesId(id);
     }

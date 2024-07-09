@@ -1,9 +1,13 @@
 package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import proyecto.grupal.lp.comidas.regionales.Entities.Categoria;
+import proyecto.grupal.lp.comidas.regionales.Entities.Establecimiento;
+import proyecto.grupal.lp.comidas.regionales.Repositories.EstablecimientoRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.ICategoriaService;
+import proyecto.grupal.lp.comidas.regionales.Services.IEstableciminetoServices;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +50,4 @@ public class CategoriaController {
         categoriaService.deleteCategoria(id);
         return "Categoria con id=" + id + " eliminado correctamente";
     }
-    
 }
