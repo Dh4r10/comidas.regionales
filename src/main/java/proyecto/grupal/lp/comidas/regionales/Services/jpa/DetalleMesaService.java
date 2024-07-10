@@ -3,10 +3,12 @@ package proyecto.grupal.lp.comidas.regionales.Services.jpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.grupal.lp.comidas.regionales.Dto.DetalleMesaGetDto;
+import proyecto.grupal.lp.comidas.regionales.Dto.PedidoDto;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetalleMesa;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetallePedido;
 import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Repositories.DetalleMesaRepository;
+import proyecto.grupal.lp.comidas.regionales.Repositories.PedidoRepository;
 import proyecto.grupal.lp.comidas.regionales.Repositories.VentaRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetalleMesaService;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetallePedidoService;
@@ -25,6 +27,8 @@ public class DetalleMesaService implements IDetalleMesaService {
     private IDetallePedidoService detallePedidoService;
     @Autowired
     private VentaRepository ventaRepository;
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     public List<DetalleMesa> getAllDetallePedidoMesas() {
         return detalleMesaRepository.findAll();
@@ -32,13 +36,9 @@ public class DetalleMesaService implements IDetalleMesaService {
 
     public List<DetalleMesaGetDto> getPedidoPorMesa(Long idMesa) {
         List<DetalleMesaGetDto> detalleMesaGetDtos = new ArrayList<>();
-        List<DetalleMesa> pedidoPorMesa = detalleMesaRepository.findAll().stream().filter(
-                m -> m.getMesa().getId() == idMesa && m.getPedido().getEstado()
-        ).toList();
+        List<Pedido> pedidoPorMesa = pedidoRepository.pedidoPorMesaById(idMesa);
 
-        List<Pedido> pedidos = pedidoPorMesa.stream().map(pm -> pm.getPedido()).toList();
-
-        for ( Pedido value : pedidos) {
+        for ( Pedido value : pedidoPorMesa) {
             boolean validarVenta = ventaRepository.existsByPedidoId(value.getId());
 
             if (!validarVenta) {

@@ -39,23 +39,18 @@ public class DetallePedidoService implements IDetallePedidoService {
     }
 
     public DetallePedidoSalonGetRequest getDetallePedidoSalonById(Long id) {
-        Optional<Pedido> pedido = pedidoRepository.findById(id).filter(pedido1 -> pedido1.getTipoPedido().equals("SALON"));
 
-        List<DetallePedido> detallePedido = detallePedidoRepository.findAll().stream().filter(
-                dp -> dp.getEstado()
-        ).toList();
+        Optional<Pedido> pedido = pedidoRepository.pedidoSalonById("SALON", id);
+
+        Long idPedido = pedido.get().getId();
+
+        List<DetallePedido> detallePedido = detallePedidoRepository.detallePedidoPorPedido(idPedido);
         List<DetallePedidoProductoDto> listaPedidos = new ArrayList<>();
-
-        List<DetalleMesa> detalleMesa = detalleMesaRepository.findAll();
+        
+        List<DetalleMesa> detalleMesa = detalleMesaRepository.detalleMesaPorPedido(idPedido);
         List<DetalleMesaMesaDto> listaMesas = new ArrayList<>();
 
         boolean ventaExiste = ventaRepository.existsByPedidoId(pedido.get().getId());
-
-        long numPedidos = detallePedidoRepository.countIdByDetallePedido(pedido.get().getId());
-        long contadorPedidos = 0;
-
-        long numMesas = detalleMesaRepository.countIdByDetalleMesa(pedido.get().getId());
-        long contadorMesas = 0;
 
         DetallePedidoSalonGetRequest detallePedidoSalonGetRequest = new DetallePedidoSalonGetRequest();
         detallePedidoSalonGetRequest.setPedidoId(pedido.get().getId());
@@ -64,49 +59,32 @@ public class DetallePedidoService implements IDetallePedidoService {
         detallePedidoSalonGetRequest.setEstadoPedido(ventaExiste ? "PAGADO" : "PENDIENTE");
 
         for (DetallePedido value : detallePedido) {
-            if (numPedidos > contadorPedidos) {
-                    if (value.getPedido().getId() == pedido.get().getId()) {
-                    DetallePedidoProductoDto detallePedidoProductoDto = new DetallePedidoProductoDto();
-                    detallePedidoProductoDto.setDetallePedidoId(value.getId());
-                    detallePedidoProductoDto.setProductoId(value.getProducto().getId());
-                    detallePedidoProductoDto.setTipoProducto(value.getProducto().getTipoProducto());
-                    detallePedidoProductoDto.setNombreProducto(value.getProducto().getNombre());
-                    detallePedidoProductoDto.setDescripcionProducto(value.getProducto().getDescripcion());
-                    detallePedidoProductoDto.setPrecioProducto(value.getProducto().getPrecio());
-                    detallePedidoProductoDto.setImagenProducto(value.getProducto().getImagen());
-                    detallePedidoProductoDto.setDescripcion(value.getDescripcion()
-                    );
-                    detallePedidoProductoDto.setCantidad(value.getCantidad());
+            DetallePedidoProductoDto detallePedidoProductoDto = new DetallePedidoProductoDto();
+            detallePedidoProductoDto.setDetallePedidoId(value.getId());
+            detallePedidoProductoDto.setProductoId(value.getProducto().getId());
+            detallePedidoProductoDto.setTipoProducto(value.getProducto().getTipoProducto());
+            detallePedidoProductoDto.setNombreProducto(value.getProducto().getNombre());
+            detallePedidoProductoDto.setDescripcionProducto(value.getProducto().getDescripcion());
+            detallePedidoProductoDto.setPrecioProducto(value.getProducto().getPrecio());
+            detallePedidoProductoDto.setImagenProducto(value.getProducto().getImagen());
+            detallePedidoProductoDto.setDescripcion(value.getDescripcion());
+            detallePedidoProductoDto.setCantidad(value.getCantidad());
 
-                    listaPedidos.add(detallePedidoProductoDto);
-
-                    contadorPedidos++;
-                }
-            } else {
-                break;
-            }
+            listaPedidos.add(detallePedidoProductoDto);
         }
 
         detallePedidoSalonGetRequest.setProductos(listaPedidos);
 
         for (DetalleMesa value : detalleMesa) {
-            if (numMesas > contadorMesas) {
-                    if (value.getPedido().getId() == pedido.get().getId()) {
-                    DetalleMesaMesaDto detalleMesaMesaDto = new DetalleMesaMesaDto();
-                    detalleMesaMesaDto.setDetalleMesaId(value.getId());
-                    detalleMesaMesaDto.setMesaId(value.getMesa().getId());
-                    detalleMesaMesaDto.setAreaId(value.getMesa().getArea().getId());
-                    detalleMesaMesaDto.setTipoMesa(value.getMesa().getTipoMesa());
-                    detalleMesaMesaDto.setNumero(value.getMesa().getNumero());
-                    detalleMesaMesaDto.setCapacidad(value.getMesa().getCapacidad());
+            DetalleMesaMesaDto detalleMesaMesaDto = new DetalleMesaMesaDto();
+            detalleMesaMesaDto.setDetalleMesaId(value.getId());
+            detalleMesaMesaDto.setMesaId(value.getMesa().getId());
+            detalleMesaMesaDto.setAreaId(value.getMesa().getArea().getId());
+            detalleMesaMesaDto.setTipoMesa(value.getMesa().getTipoMesa());
+            detalleMesaMesaDto.setNumero(value.getMesa().getNumero());
+            detalleMesaMesaDto.setCapacidad(value.getMesa().getCapacidad());
 
-                    listaMesas.add(detalleMesaMesaDto);
-
-                    contadorPedidos++;
-                }
-            } else {
-                break;
-            }
+            listaMesas.add(detalleMesaMesaDto);
         }
 
         detallePedidoSalonGetRequest.setMesas(listaMesas);
