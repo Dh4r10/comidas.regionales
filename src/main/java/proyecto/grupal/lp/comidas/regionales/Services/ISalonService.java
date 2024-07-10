@@ -7,11 +7,10 @@ import java.util.Optional;
 
 public interface ISalonService {
 
-    List<Salon> getAllSalones();
+    List<Salon> getAllSalones(Long idSucursal);
     Optional<Salon> getSalonById(Long id);
     void postSalon(Salon request);
     Salon putSalon(Salon request, Long id);
     Salon patchSalon(Salon request, Long id);
     void deleteSalon(Long id);
-
 }

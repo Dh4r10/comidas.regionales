@@ -15,8 +15,10 @@ public class AreaService implements IAreaService {
     @Autowired
     private AreaRepository areaRepository;
 
-    public List<Area> getAllAreas() {
-        return areaRepository.findAll();
+    public List<Area> getAllAreas(Long idSalon) {
+        return areaRepository.findAll().stream().filter(
+                a -> a.getSalon().getId() == idSalon
+        ).toList();
     }
 
     public Optional<Area> getAreaById(Long id) {

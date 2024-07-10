@@ -15,8 +15,10 @@ public class SalonService implements ISalonService {
     @Autowired
     private SalonRepository salonRepository;
 
-    public List<Salon> getAllSalones() {
-        return salonRepository.findAll();
+    public List<Salon> getAllSalones(Long idSucursal) {
+        return salonRepository.findAll().stream().filter(
+                s -> s.getSucursal().getId() == idSucursal
+        ).toList();
     }
 
     public Optional<Salon> getSalonById(Long id) {

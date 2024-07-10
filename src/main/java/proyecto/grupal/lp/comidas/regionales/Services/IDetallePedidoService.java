@@ -14,6 +14,7 @@ public interface IDetallePedidoService {
     List<DetallePedido> getAllDetallePedidos();
     Optional<DetallePedido> getDetallePedidoById(Long id);
     Pedido postDetallePedido(DetallePedidoPostRequest request);
+    DetallePedido saveDetallePedido(DetallePedido request);
     DetallePedido putDetallePedido(DetallePedido request, Long id);
     void deleteDetallePedido(Long id);
 

@@ -2,7 +2,9 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import proyecto.grupal.lp.comidas.regionales.Dto.DetalleMesaGetDto;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetalleMesa;
+import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetalleMesaService;
 
 import java.util.List;
@@ -15,9 +17,14 @@ public class DetalleMesaController {
     @Autowired
     private IDetalleMesaService detallePedidoMesaService;
 
-     @GetMapping
+    @GetMapping
     public List<DetalleMesa> getAllDetallePedidos() {
         return detallePedidoMesaService.getAllDetallePedidoMesas();
+    }
+
+    @GetMapping("/condicionado/{idMesa}")
+    public List<DetalleMesaGetDto> getPedidoPorMesa(@PathVariable Long idMesa) {
+        return detallePedidoMesaService.getPedidoPorMesa(idMesa);
     }
 
     @GetMapping("/{id}")

@@ -2,6 +2,7 @@ package proyecto.grupal.lp.comidas.regionales.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import proyecto.grupal.lp.comidas.regionales.Dto.MesaDtoGetRequest;
 import proyecto.grupal.lp.comidas.regionales.Entities.Mesa;
 import proyecto.grupal.lp.comidas.regionales.Services.IMesaService;
 
@@ -15,10 +16,16 @@ public class MesaController {
     @Autowired
     private IMesaService mesaService;
 
-    @GetMapping
+    @GetMapping()
     public List<Mesa> getAllMesas() {
         return mesaService.getAllMesas();
     }
+
+    @GetMapping("/condicionado/{idSucursal}/{idSalon}/{idArea}")
+    public MesaDtoGetRequest getAllMesasDto(@PathVariable Long idSucursal, @PathVariable Long idSalon, @PathVariable Long idArea) {
+        return mesaService.getMesaDtoGetRequest(idSucursal, idSalon, idArea);
+    }
+
 
     @GetMapping("/{id}")
     public Optional<Mesa> getMesaById(@PathVariable Long id) {

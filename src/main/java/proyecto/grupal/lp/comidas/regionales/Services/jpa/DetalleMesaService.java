@@ -2,11 +2,16 @@ package proyecto.grupal.lp.comidas.regionales.Services.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import proyecto.grupal.lp.comidas.regionales.Dto.DetalleMesaGetDto;
 import proyecto.grupal.lp.comidas.regionales.Entities.DetalleMesa;
+import proyecto.grupal.lp.comidas.regionales.Entities.DetallePedido;
+import proyecto.grupal.lp.comidas.regionales.Entities.Pedido;
 import proyecto.grupal.lp.comidas.regionales.Repositories.DetalleMesaRepository;
+import proyecto.grupal.lp.comidas.regionales.Repositories.VentaRepository;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetalleMesaService;
 import proyecto.grupal.lp.comidas.regionales.Services.IDetallePedidoService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +23,34 @@ public class DetalleMesaService implements IDetalleMesaService {
 
     @Autowired
     private IDetallePedidoService detallePedidoService;
+    @Autowired
+    private VentaRepository ventaRepository;
 
     public List<DetalleMesa> getAllDetallePedidoMesas() {
         return detalleMesaRepository.findAll();
+    }
+
+    public List<DetalleMesaGetDto> getPedidoPorMesa(Long idMesa) {
+        List<DetalleMesaGetDto> detalleMesaGetDtos = new ArrayList<>();
+        List<DetalleMesa> pedidoPorMesa = detalleMesaRepository.findAll().stream().filter(
+                m -> m.getMesa().getId() == idMesa && m.getPedido().getEstado()
+        ).toList();
+
+        List<Pedido> pedidos = pedidoPorMesa.stream().map(pm -> pm.getPedido()).toList();
+
+        for ( Pedido value : pedidos) {
+            boolean validarVenta = ventaRepository.existsByPedidoId(value.getId());
+
+            if (!validarVenta) {
+                DetalleMesaGetDto dto = new DetalleMesaGetDto();
+                dto.setPedidoId(value.getId());
+                dto.setFechaPedido(value.getFecha());
+                dto.setPendiente(validarVenta);
+                detalleMesaGetDtos.add(dto);
+            }
+        }
+
+        return detalleMesaGetDtos;
     }
 
     public Optional<DetalleMesa> getDetallePedidoMesaById(Long id) {

@@ -15,9 +15,9 @@ public class SalonController {
     @Autowired
     private ISalonService salonService;
 
-    @GetMapping
-    public List<Salon> getAllSalones() {
-        return salonService.getAllSalones();
+    @GetMapping("/condicionado/{idSucursal}")
+    public List<Salon> getAllSalones(@PathVariable Long idSucursal) {
+        return salonService.getAllSalones(idSucursal);
     }
 
     @GetMapping("/{id}")

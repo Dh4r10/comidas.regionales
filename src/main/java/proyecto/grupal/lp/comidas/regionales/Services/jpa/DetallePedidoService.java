@@ -41,7 +41,9 @@ public class DetallePedidoService implements IDetallePedidoService {
     public DetallePedidoSalonGetRequest getDetallePedidoSalonById(Long id) {
         Optional<Pedido> pedido = pedidoRepository.findById(id).filter(pedido1 -> pedido1.getTipoPedido().equals("SALON"));
 
-        List<DetallePedido> detallePedido = detallePedidoRepository.findAll();
+        List<DetallePedido> detallePedido = detallePedidoRepository.findAll().stream().filter(
+                dp -> dp.getEstado()
+        ).toList();
         List<DetallePedidoProductoDto> listaPedidos = new ArrayList<>();
 
         List<DetalleMesa> detalleMesa = detalleMesaRepository.findAll();
@@ -65,14 +67,15 @@ public class DetallePedidoService implements IDetallePedidoService {
             if (numPedidos > contadorPedidos) {
                     if (value.getPedido().getId() == pedido.get().getId()) {
                     DetallePedidoProductoDto detallePedidoProductoDto = new DetallePedidoProductoDto();
-                    detallePedidoProductoDto.setDetallePedidoId(pedido.get().getId());
+                    detallePedidoProductoDto.setDetallePedidoId(value.getId());
                     detallePedidoProductoDto.setProductoId(value.getProducto().getId());
                     detallePedidoProductoDto.setTipoProducto(value.getProducto().getTipoProducto());
                     detallePedidoProductoDto.setNombreProducto(value.getProducto().getNombre());
                     detallePedidoProductoDto.setDescripcionProducto(value.getProducto().getDescripcion());
                     detallePedidoProductoDto.setPrecioProducto(value.getProducto().getPrecio());
                     detallePedidoProductoDto.setImagenProducto(value.getProducto().getImagen());
-                    detallePedidoProductoDto.setDescripcion(value.getProducto().getDescripcion());
+                    detallePedidoProductoDto.setDescripcion(value.getDescripcion()
+                    );
                     detallePedidoProductoDto.setCantidad(value.getCantidad());
 
                     listaPedidos.add(detallePedidoProductoDto);
@@ -203,6 +206,11 @@ public class DetallePedidoService implements IDetallePedidoService {
         }
 
         return pedidoGuardado;
+    }
+
+    public DetallePedido saveDetallePedido(DetallePedido request) {
+        request.setEstado(true);
+        return detallePedidoRepository.save(request);
     }
 
     public DetallePedido putDetallePedido(DetallePedido request, Long id) {

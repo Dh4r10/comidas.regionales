@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IAreaService {
 
-    List<Area> getAllAreas();
+    List<Area> getAllAreas(Long idSalon);
     Optional<Area> getAreaById(Long id);
     void postArea(Area request);
     Area putArea(Area request, Long id);

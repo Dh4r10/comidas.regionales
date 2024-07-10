@@ -15,9 +15,9 @@ public class AreaController {
     @Autowired
     private IAreaService areaService;
 
-    @GetMapping
-    public List<Area> getAllAreas() {
-        return areaService.getAllAreas();
+    @GetMapping("/condicionado/{idSalon}")
+    public List<Area> getAllAreas(@PathVariable Long idSalon) {
+        return areaService.getAllAreas(idSalon);
     }
 
     @GetMapping("/{id}")

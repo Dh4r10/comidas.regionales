@@ -39,6 +39,11 @@ public class DetallePedidoController {
         return detallePedidoService.getDetallePedidoSalonById(id);
     }
 
+    @PostMapping("/save")
+    public DetallePedido saveDetallePedido(@RequestBody DetallePedido request) {
+        return detallePedidoService.saveDetallePedido(request);
+    }
+
     @PostMapping
     public Pedido postDetallePedido(@RequestBody DetallePedidoPostRequest request) {
         return detallePedidoService.postDetallePedido(request);
