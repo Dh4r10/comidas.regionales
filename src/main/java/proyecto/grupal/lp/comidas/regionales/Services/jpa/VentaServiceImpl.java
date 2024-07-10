@@ -81,6 +81,11 @@ public class VentaServiceImpl implements IVentaService {
     }
 
     @Override
+    public List<Venta> listarVentarPorSucursal(Long sucursalID) {
+        return ventaRepository.getAllVetasBySucursal(sucursalID);
+    }
+
+    @Override
     public void anularVenta(Long id) {
         ventaRepository.deleteById(id);
     }

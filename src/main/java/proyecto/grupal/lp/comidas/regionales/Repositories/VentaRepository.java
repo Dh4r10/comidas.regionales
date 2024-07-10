@@ -15,4 +15,16 @@ public interface VentaRepository extends JpaRepository<Venta,Long> {
     boolean existsByPedidoId(@Param("id") Long id);
 
     List<Venta> findAllByCliente(Cliente cliente);
+
+    @Query(value = """
+            select v.* from ventas v
+                inner join apertura a on v.apertura_id = a.id
+                inner join caja c on a.caja_id = c.id
+                inner join sucursal s on c.sucursal_id = s.id
+                where s.id=:sucursalID
+            """,
+    nativeQuery = true)
+    List<Venta> getAllVetasBySucursal(@Param("sucursalID")Long sucursalID);
+
+
 }
